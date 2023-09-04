@@ -6,7 +6,6 @@ public class Ejercicio_2 {
     public static void main(String[] args) {
     //Creamos la lista
     Lista listaEjemplo = new Lista();
-
         System.out.println("Creamos la lista y agregamos 5 numeros del 1 al 5.");
     //Insertamos el primer elemento
         listaEjemplo.agregar(1);
