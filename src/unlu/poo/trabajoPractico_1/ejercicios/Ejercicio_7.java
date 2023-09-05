@@ -56,6 +56,6 @@ public class Ejercicio_7 {
         Ecuacion cuartaEcuacion = new Ecuacion(-7, 9, 65);
         System.out.println("Primer resultado: " + cuartaEcuacion.calcularY(1));
         System.out.println("Segundo resultado: " + cuartaEcuacion.calcularY(4));
-        System.out.println("Tercer resultado" + cuartaEcuacion.calcularY(6));
+        System.out.println("Tercer resultado: " + cuartaEcuacion.calcularY(6));
     }
 }
