@@ -1,4 +1,4 @@
-package unlu.poo.trabajoPractico_1.tiposNodos;
+package unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.tiposNodos;
 
 public class NodoSimple {
     private Object dato;

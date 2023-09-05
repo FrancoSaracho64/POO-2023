@@ -1,9 +1,8 @@
-package unlu.poo.trabajoPractico_1.tads.listas.listaSimple;
+package unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.tads.listas.listaSimple;
 
-import unlu.poo.trabajoPractico_1.tiposNodos.NodoSimple;
+import unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.tiposNodos.NodoSimple;
 
 public class Lista {
-
     private NodoSimple primerElemento = null;
 
     public boolean esVacia(){
@@ -54,7 +53,7 @@ public class Lista {
         }
     }
 
-    public NodoSimple recuperar(Integer posicion) {
+    public Object recuperar(Integer posicion) {
         if (posicion > longitud() || posicion < 1){
             return null;
         } else {
@@ -64,7 +63,7 @@ public class Lista {
                 nodoSimpleRecuperado = nodoSimpleRecuperado.getSiguiente();
                 posActual++;
             }
-            return nodoSimpleRecuperado;
+            return nodoSimpleRecuperado.getDato();
         }
     }
 
@@ -83,8 +82,5 @@ public class Lista {
                 nodoSimpleRecuperado.setSiguiente(nodoSimpleRecuperado.getSiguiente().getSiguiente());
             }
         }
-    }
-    public void modificar(Integer posicion){
-
     }
 }

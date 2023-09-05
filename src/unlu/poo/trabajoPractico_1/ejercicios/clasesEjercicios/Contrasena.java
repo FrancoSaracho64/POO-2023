@@ -19,22 +19,22 @@ public class Contrasena {
         //creo la contrasena
         this.password = "";
         for (int i = 0; i < longitud; i++){
-            int i_aleatorio = numeroAleatorioEnRango(0, banco.length() - 1);
+            int i_aleatorio = numeroAleatorioEnRango(banco.length() - 1);
             char caracter = banco.charAt(i_aleatorio);
             password += caracter;
         }
     }
 
-    public void regenerar(Integer longitud){
+    public void regenerar(){
         generar(longitud);
         //verifico que la contrasena sea fuerte
-        boolean fuerte = ver_fuerte();
+        boolean fuerte = esFuerte();
         if (!fuerte) {
             generar(longitud);
         }
     }
 
-    public boolean ver_fuerte(){
+    public boolean esFuerte(){
         boolean fuerte = false;
         //Fuerte: +2 mayus, +1 min, al menos +2 num
         char[] contrasena = password.toCharArray();
@@ -67,11 +67,12 @@ public class Contrasena {
 
     public void setLongitud(Integer longitud) {
         this.longitud = longitud;
+        regenerar();
     }
 
 
-    private static int numeroAleatorioEnRango(int minimo, int maximo) {
+    private static int numeroAleatorioEnRango(int maximo) {
         // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1
-        return ThreadLocalRandom.current().nextInt(minimo, maximo + 1);
+        return ThreadLocalRandom.current().nextInt(0, maximo + 1);
     }
 }

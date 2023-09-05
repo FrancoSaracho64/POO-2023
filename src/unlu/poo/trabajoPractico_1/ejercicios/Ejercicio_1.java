@@ -1,6 +1,7 @@
 package unlu.poo.trabajoPractico_1.ejercicios;
 
-import unlu.poo.trabajoPractico_1.tads.listas.listaSimple.Lista;
+import unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.tads.listas.listaSimple.Lista;
+import unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.tiposNodos.NodoSimple;
 
 public class Ejercicio_1 {
     public static void main(String[] args) {
@@ -33,6 +34,8 @@ public class Ejercicio_1 {
         listaEjemplo.insertar("Mate", 4);
         mostrar_lista(listaEjemplo);
         System.out.println();
+        System.out.println("Recupero el dato almacenado en la posicion 4");
+        System.out.println(listaEjemplo.recuperar(4));
     }
 
     //Creamos la funcion fuera del TAD para mostrar la lista por pantalla.

@@ -1,6 +1,6 @@
-package unlu.poo.trabajoPractico_1.tads;
+package unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.tads;
 
-import unlu.poo.trabajoPractico_1.tiposNodos.NodoSimple;
+import unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.tiposNodos.NodoSimple;
 
 public class Cola {
     private NodoSimple frente;
