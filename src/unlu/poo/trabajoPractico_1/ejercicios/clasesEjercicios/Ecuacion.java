@@ -35,4 +35,8 @@ public class Ecuacion {
         }
         return listaRaices;
     }
+
+    public double calcularY (double X){
+        return ( coheficiente_A * pow(X,2) + (coheficiente_B * X) + coheficiente_C);
+    }
 }
