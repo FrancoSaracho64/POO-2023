@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public class Ejercicio_5 {
     public static void main(String[] args) {
         System.out.println("------ Creo las tareas solicitadas y las agrego a un ArrayList.");
-        Tarea primerTarea = new Tarea("Ir al supermercado mañana", Prioridad.MEDIA, "17-10-2002");
-        Tarea segundaTarea = new Tarea("Consultar repuesto del auto", Prioridad.MEDIA, "03-09-2023");
-        Tarea tercerTarea = new Tarea("Ir al cine a ver la nueva película de Marvel", Prioridad.MEDIA, "10-11-2031");
+        Tarea primerTarea = new Tarea("Ir al supermercado mañana", Prioridad.BAJA, "17-10-2002");
+        Tarea segundaTarea = new Tarea("Consultar repuesto del auto", Prioridad.BAJA, "03-09-2023");
+        Tarea tercerTarea = new Tarea("Ir al cine a ver la nueva película de Marvel", Prioridad.BAJA, "10-11-2031");
         ArrayList<Tarea> agenda = new ArrayList<>();
         agenda.add(primerTarea);
         agenda.add(segundaTarea);

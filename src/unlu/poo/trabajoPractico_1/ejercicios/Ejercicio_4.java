@@ -33,7 +33,7 @@ public class Ejercicio_4 {
         while (!cola.esVacia()){
             Object elemento = cola.desencolar();
             colaAux.encolar(elemento);
-            System.out.println("POSICION: " + contador + "  " + elemento);
+            System.out.println("POSICION " + contador + ":  " + elemento);
             contador++;
         }
         System.out.println("**************************************************\n");

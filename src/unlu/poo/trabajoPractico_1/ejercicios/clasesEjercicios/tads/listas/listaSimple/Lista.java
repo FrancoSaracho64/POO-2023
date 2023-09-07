@@ -3,6 +3,7 @@ package unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.tads.listas.lista
 import unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.tiposNodos.NodoSimple;
 
 public class Lista {
+
     private NodoSimple primerElemento = null;
 
     public boolean esVacia(){

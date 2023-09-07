@@ -8,9 +8,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 
 public class Tarea {
+    private String titulo;
     private String descripcion;
     private Prioridad prioridad;
     private Estado estado;
+    private LocalDate fecha_recordatorio;
     private LocalDate fecha_limite;
 
     public Tarea() {
@@ -18,9 +20,29 @@ public class Tarea {
     }
 
     public Tarea(String descripcion, Prioridad prioridad, String fecha_limite) {
+        this.titulo = "";
         this.descripcion = descripcion;
         this.prioridad = prioridad;
         this.estado = Estado.PENDIENTE;
+        this.fecha_recordatorio = null;
+        this.fecha_limite = formatearFecha(fecha_limite);
+    }
+
+    public Tarea(String descripcion, Prioridad prioridad, String fecha_recordatorio, String fecha_limite) {
+        this.titulo = "";
+        this.descripcion = descripcion;
+        this.prioridad = prioridad;
+        this.estado = Estado.PENDIENTE;
+        this.fecha_recordatorio = formatearFecha(fecha_recordatorio);
+        this.fecha_limite = formatearFecha(fecha_limite);
+    }
+
+    public Tarea(String titulo, String descripcion, Prioridad prioridad, String fecha_recordatorio, String fecha_limite) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.estado = Estado.PENDIENTE;
+        this.prioridad = prioridad;
+        this.fecha_recordatorio = formatearFecha(fecha_recordatorio);
         this.fecha_limite = formatearFecha(fecha_limite);
     }
 
@@ -29,15 +51,6 @@ public class Tarea {
     }
 
     public void cambiar_prioridad(Prioridad prioridad){
-        /*if (prioridad.equalsIgnoreCase("INDEFINIDA")){
-            this.prioridad = Prioridad.INDEFINIDA;
-        } else if (prioridad.equalsIgnoreCase("BAJA")) {
-            this.prioridad = Prioridad.BAJA;
-        } else if (prioridad.equalsIgnoreCase("MEDIA")) {
-            this.prioridad = Prioridad.MEDIA;
-        } else if (prioridad.equalsIgnoreCase("ALTA")) {
-            this.prioridad = Prioridad.ALTA;
-        }*/
         this.prioridad = prioridad;
     }
 
@@ -47,21 +60,37 @@ public class Tarea {
 
     public void mostrar_tarea(){
         System.out.println("\n++++ TAREA ++++");
+        if (!titulo.isEmpty()) {
+            System.out.println("-- Titulo: " + this.titulo);
+        }
         System.out.println("-- Descripcion: " + this.descripcion);
         System.out.println("-- Estado: " + this.estado);
+        if (fecha_recordatorio != null) {
+            if (LocalDate.now().isEqual(fecha_recordatorio) || LocalDate.now().isBefore(fecha_recordatorio)){
+                this.prioridad = Prioridad.ALTA;
+            }
+            System.out.println("-- Fecha de recordatorio: " + this.fecha_recordatorio.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            ver_fecha_recordatorio();
+        }
         System.out.println("-- Prioridad: " + this.prioridad);
         System.out.println("-- Fecha limite: " + this.fecha_limite.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         ver_estado_fecha();
-
     }
 
-    public void ver_estado_fecha(){
+    private void ver_fecha_recordatorio(){
+        LocalDate ahora = LocalDate.now();
+         if (fecha_recordatorio.isEqual(ahora)) {
+            System.out.println("           ( ** Por vencer ** )");
+        }
+    }
+
+    private void ver_estado_fecha(){
         LocalDate ahora = LocalDate.now();
         if (fecha_limite.isBefore(ahora)){
             System.out.println("        La tarea se encuentra vencida.");
         } else if (fecha_limite.isAfter(ahora)) {
             System.out.println("        La tarea se encuentra vigente.");
-        } else if (fecha_limite.isEqual(ahora)) {
+        } else {
             System.out.println("        La tarea vence HOY.");
         }
     }
@@ -83,5 +112,33 @@ public class Tarea {
                 .append(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
                 .toFormatter();
         return LocalDate.parse(fecha, formateador);
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Prioridad getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(Prioridad prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public LocalDate getFecha_recordatorio() {
+        return fecha_recordatorio;
+    }
+
+    public LocalDate getFecha_limite() {
+        return fecha_limite;
+    }
+
+    public void setFecha_recordatorio(LocalDate fecha_recordatorio) {
+        this.fecha_recordatorio = fecha_recordatorio;
     }
 }

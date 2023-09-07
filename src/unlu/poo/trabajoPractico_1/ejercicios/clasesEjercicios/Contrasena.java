@@ -4,9 +4,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Contrasena {
     private String password;
-    private Integer longitud = 8;
+    private Integer longitud;
 
     public Contrasena(){
+        this.longitud = 8;
         generar(this.longitud);
     }
 
@@ -69,7 +70,6 @@ public class Contrasena {
         this.longitud = longitud;
         regenerar();
     }
-
 
     private static int numeroAleatorioEnRango(int maximo) {
         // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1
