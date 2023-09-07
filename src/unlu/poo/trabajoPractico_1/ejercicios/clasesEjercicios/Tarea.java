@@ -98,6 +98,10 @@ public class Tarea {
         }
     }
 
+    public Colaborador getFinalizador() {
+        return finalizador;
+    }
+
     private void ver_estado_fecha(){
         LocalDate ahora = LocalDate.now();
         if (fecha_limite.isBefore(ahora)){

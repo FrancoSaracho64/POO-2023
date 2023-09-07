@@ -2,6 +2,7 @@ package unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios;
 
 import unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.enumeradores.Estado;
 import unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.enumeradores.Prioridad;
+import unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.tads.Cola;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,12 +28,12 @@ public class AdministradorDeTareas {
         return tareaEncontrada;
     }
 
-    public void completarTarea(String titulo, String nombre) {
+    public void completarTarea(String titulo, Colaborador colaborador) {
         Colaborador finalizador = null;
         boolean encontrado = false;
         for (int i = 0; i < colaboradores.size(); i++) {
-            if (colaboradores.get(i).getNombre().equalsIgnoreCase(nombre)){
-                finalizador = new Colaborador(nombre);
+            if (colaboradores.get(i).equals(colaborador)){
+                finalizador = colaborador;
                 encontrado = true;
             }
         }
@@ -46,6 +47,16 @@ public class AdministradorDeTareas {
                 }
             }
         }
+    }
+
+    public ArrayList<Tarea> tareaFinalizadasPor (Colaborador colaborador){
+        ArrayList<Tarea> tareasFin = new ArrayList<>();
+        for (int i = 0; i < tareas.size(); i++) {
+            if(tareas.get(i).getFinalizador() == colaborador) {
+                tareasFin.add(tareas.get(i));
+            }
+        }
+        return  tareasFin;
     }
 
     public ArrayList<Tarea> ordenar() {
@@ -87,9 +98,8 @@ public class AdministradorDeTareas {
         tareas.add(nueva_tarea);
     }
 
-    public void agregar_colaborador(String nombre) {
-        Colaborador nuevo_colaborador = new Colaborador(nombre);
-        colaboradores.add(nuevo_colaborador);
+    public void agregar_colaborador(Colaborador colaborador) {
+        colaboradores.add(colaborador);
     }
 
     public ArrayList<Tarea> getTareas() {

@@ -8,34 +8,33 @@ import unlu.poo.trabajoPractico_1.ejercicios.clasesEjercicios.enumeradores.Prior
 import java.util.ArrayList;
 
 public class Ejercicio_13 {
-    /*
-    Ejercicio 13
-Seguimos extendiendo el ToDoList, se agregan nuevas funcionalidades.
-Ahora las tareas pueden resolverlas varias personas, por lo cual una
-lista de tareas puede tener varios colaboradores y una tarea, cuando
-se marca finalizada, será realizada por un colaborador. Cuando la tarea
-se marca finalizada debería registrar la fecha de finalización.
-
-Se debe poder obtener un listado de las tareas realizadas por un colaborador.
-     */
     public static void main(String[] args) {
         AdministradorDeTareas mi_administrador = new AdministradorDeTareas();
+        Colaborador persona1 = new Colaborador("Franco");
+        Colaborador persona2 = new Colaborador("Mateo");
 
-        mi_administrador.agregar_colaborador("Franco");
-        mi_administrador.agregar_colaborador("Mateo");
+        mi_administrador.agregar_colaborador(persona1);
+        mi_administrador.agregar_colaborador(persona2);
 
         System.out.println("------ Creo las tareas solicitadas y las agrego al administrador.");
         mi_administrador.agregar_tarea("Supermercado", "Ir al supermercado mañana", Prioridad.BAJA, "03-09-2023", "04-09-2023");
         mi_administrador.agregar_tarea("Marvel", "Ir al cine a ver la nueva película de Marvel", Prioridad.BAJA, "10-11-2024", "15-12-2096");
         mi_administrador.agregar_tarea("Repuesto", "Consultar repuesto del auto", Prioridad.BAJA, "06-09-2023", "17-10-2023");
-        mi_administrador.agregar_tarea("Moto", "Comprar una moto para mi amigo Juan Lopez", Prioridad.BAJA, "17-05-2025", "25-07-2026");
+        mi_administrador.agregar_tarea("Moto", "Comprar una moto para mi amigo Pedro Alfonferox", Prioridad.BAJA, "17-05-2025", "25-07-2026");
 
         System.out.println();
         System.out.println("------ Muestro las tareas cargadas...");
         mostrar_tareas(mi_administrador.getTareas());
 
-        mi_administrador.completarTarea("supermercado", "Franco");
+
+        System.out.println("Muestro que se finalizo una tarea por un colaborador.");
+        mi_administrador.completarTarea("repuesto", persona1);
         mostrar_tareas(mi_administrador.getTareas());
+
+        System.out.println("Muestro todas las tareas finalizadas por una persona.");
+        mi_administrador.completarTarea("moto", persona1);
+        ArrayList<Tarea> aa = mi_administrador.tareaFinalizadasPor(persona1);
+        mostrar_tareas(aa);
     }
 
     public static void mostrar_tareas(ArrayList<Tarea> tareas) {
