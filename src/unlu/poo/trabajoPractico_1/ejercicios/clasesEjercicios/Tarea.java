@@ -14,27 +14,33 @@ public class Tarea {
     private Estado estado;
     private LocalDate fecha_recordatorio;
     private LocalDate fecha_limite;
+    private LocalDate fecha_finalizacion;
+    private Colaborador finalizador;
 
-    public Tarea() {
-        this.estado = Estado.PENDIENTE;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public Tarea(String descripcion, Prioridad prioridad, String fecha_limite) {
-        this.titulo = "";
+        this.titulo = null;
         this.descripcion = descripcion;
         this.prioridad = prioridad;
         this.estado = Estado.PENDIENTE;
         this.fecha_recordatorio = null;
         this.fecha_limite = formatearFecha(fecha_limite);
+        this.fecha_finalizacion = null;
+        this.finalizador = null;
     }
 
     public Tarea(String descripcion, Prioridad prioridad, String fecha_recordatorio, String fecha_limite) {
-        this.titulo = "";
+        this.titulo = null;
         this.descripcion = descripcion;
         this.prioridad = prioridad;
         this.estado = Estado.PENDIENTE;
         this.fecha_recordatorio = formatearFecha(fecha_recordatorio);
         this.fecha_limite = formatearFecha(fecha_limite);
+        this.fecha_finalizacion = null;
+        this.finalizador = null;
     }
 
     public Tarea(String titulo, String descripcion, Prioridad prioridad, String fecha_recordatorio, String fecha_limite) {
@@ -44,6 +50,8 @@ public class Tarea {
         this.prioridad = prioridad;
         this.fecha_recordatorio = formatearFecha(fecha_recordatorio);
         this.fecha_limite = formatearFecha(fecha_limite);
+        this.fecha_finalizacion = null;
+        this.finalizador = null;
     }
 
     public void modificar_descripcion(String descripcion){
@@ -64,9 +72,12 @@ public class Tarea {
             System.out.println("-- Titulo: " + this.titulo);
         }
         System.out.println("-- Descripcion: " + this.descripcion);
+        if(LocalDate.now().isAfter(fecha_limite)){
+            this.estado = Estado.VENCIDA;
+        }
         System.out.println("-- Estado: " + this.estado);
         if (fecha_recordatorio != null) {
-            if (LocalDate.now().isEqual(fecha_recordatorio) || LocalDate.now().isBefore(fecha_recordatorio)){
+            if (LocalDate.now().isEqual(fecha_recordatorio) || LocalDate.now().isAfter(fecha_recordatorio)){
                 this.prioridad = Prioridad.ALTA;
             }
             System.out.println("-- Fecha de recordatorio: " + this.fecha_recordatorio.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
@@ -74,6 +85,9 @@ public class Tarea {
         }
         System.out.println("-- Prioridad: " + this.prioridad);
         System.out.println("-- Fecha limite: " + this.fecha_limite.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        if (fecha_finalizacion !=null && estado.equals(Estado.FINALIZADA)) {
+            System.out.println("-- La tarea fue FINALIZADA el " + this.fecha_finalizacion.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + " por el colaborador: " + finalizador.getNombre() );
+        }
         ver_estado_fecha();
     }
 
@@ -114,12 +128,20 @@ public class Tarea {
         return LocalDate.parse(fecha, formateador);
     }
 
+    public void setFecha_finalizacion(LocalDate fecha_finalizacion) {
+        this.fecha_finalizacion = fecha_finalizacion;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public void setFinalizador(Colaborador finalizador) {
+        this.finalizador = finalizador;
     }
 
     public Prioridad getPrioridad() {
@@ -136,6 +158,14 @@ public class Tarea {
 
     public LocalDate getFecha_limite() {
         return fecha_limite;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
     public void setFecha_recordatorio(LocalDate fecha_recordatorio) {
