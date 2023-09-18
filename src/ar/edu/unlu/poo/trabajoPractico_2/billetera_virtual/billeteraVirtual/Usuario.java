@@ -1,7 +1,6 @@
-package ar.edu.unlu.billeteraVirtual;
-
-import ar.edu.unlu.cuentas.Cuenta;
-import ar.edu.unlu.cuentas.CuentaCredito;
+package ar.edu.unlu.poo.trabajoPractico_2.billetera_virtual.billeteraVirtual;
+import ar.edu.unlu.poo.trabajoPractico_2.billetera_virtual.cuentas.Cuenta;
+import ar.edu.unlu.poo.trabajoPractico_2.billetera_virtual.cuentas.CuentaCredito;
 
 public class Usuario {
 	private Cuenta cuenta;
@@ -25,13 +24,13 @@ public class Usuario {
 	 */
 	public void mostrarEstado() {
 		System.out.println("-----------------------");
-		System.out.println("");
+		System.out.println();
 		System.out.println("Saldo: "+this.cuenta.getSaldo());
 		System.out.println("Giro en descubierto: "+this.cuenta.getLimiteGiroDescubierto()+"("+this.cuenta.getGiroDescubierto()+")");
 		System.out.println("Inversiones: "+this.cuenta.getMontoInvertido()+"("+this.cuenta.getInteresAGanar()+")");
-		System.out.println("");
+		System.out.println();
 		System.out.println("--- Cuenta crédito ----");
-		System.out.println("");
+		System.out.println();
 		System.out.println("Disponible para compras: "+this.cuentaCredito.getMontoDisponibleParaCompras());
 		System.out.println("Saldo deudor: "+this.cuentaCredito.getSaldoDeudor());
 	}

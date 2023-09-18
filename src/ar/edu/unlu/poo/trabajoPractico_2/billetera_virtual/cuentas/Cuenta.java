@@ -1,4 +1,4 @@
-package ar.edu.unlu.cuentas;
+package ar.edu.unlu.poo.trabajoPractico_2.billetera_virtual.cuentas;
 import java.time.LocalDate;
 public class Cuenta {
 	private double saldo;
